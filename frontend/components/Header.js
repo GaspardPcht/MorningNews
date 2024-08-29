@@ -26,33 +26,41 @@ function Header() {
   }, []);
 
   const handleRegister = () => {
-    fetch('http://localhost:3000/users/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: signUpUsername, password: signUpPassword }),
-    }).then(response => response.json())
-      .then(data => {
+    fetch("https://morning-news-back-tau.vercel.app/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: signUpUsername,
+        password: signUpPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         if (data.result) {
           dispatch(login({ username: signUpUsername, token: data.token }));
-          setSignUpUsername('');
-          setSignUpPassword('');
-          setIsModalVisible(false)
+          setSignUpUsername("");
+          setSignUpPassword("");
+          setIsModalVisible(false);
         }
       });
   };
 
   const handleConnection = () => {
-    fetch('http://localhost:3000/users/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: signInUsername, password: signInPassword }),
-    }).then(response => response.json())
-      .then(data => {
+    fetch("https://morning-news-back-tau.vercel.app/users/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: signInUsername,
+        password: signInPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         if (data.result) {
           dispatch(login({ username: signInUsername, token: data.token }));
-          setSignInUsername('');
-          setSignInPassword('');
-          setIsModalVisible(false)
+          setSignInUsername("");
+          setSignInPassword("");
+          setIsModalVisible(false);
         }
       });
   };

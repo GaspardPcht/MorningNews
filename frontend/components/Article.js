@@ -15,9 +15,11 @@ function Article(props) {
       return;
     }
 
-    fetch(`http://localhost:3000/users/canBookmark/${user.token}`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(
+      `https://morning-news-back-tau.vercel.app/users/canBookmark/${user.token}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
         if (data.result && data.canBookmark) {
           if (props.isBookmarked) {
             dispatch(removeBookmark(props));
